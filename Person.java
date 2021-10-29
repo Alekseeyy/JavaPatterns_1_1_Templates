@@ -6,7 +6,7 @@ import java.util.OptionalInt;
 public class Person {
     protected final String name;
     protected final String surname;
-    protected int age;
+    protected Integer age;
     protected String address;
 
     public Person(String name, String surname) {
@@ -21,7 +21,7 @@ public class Person {
     }
 
     public boolean hasAge() {
-        return age >= 0;
+        return age != null;
     }
 
     public boolean hasAddress() {
@@ -37,7 +37,10 @@ public class Person {
     }
 
     public OptionalInt getAge() {
-        return OptionalInt.of(age);
+        if (hasAge()) {
+            return OptionalInt.of(age);
+        }
+        return OptionalInt.empty();
     }
 
     public String getAddress() {
@@ -74,7 +77,7 @@ public class Person {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return age == person.age && name.equals(person.name) && surname.equals(person.surname) &&
+        return age.equals(person.age) && name.equals(person.name) && surname.equals(person.surname) &&
                 address.equals(person.address);
     }
 
