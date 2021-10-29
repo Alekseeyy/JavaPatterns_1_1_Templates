@@ -32,10 +32,10 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person build() throws IllegalArgumentException {
+    public Person build() throws IllegalStateException {
         Person person;
         if (name == null || surname == null)
-            throw new IllegalArgumentException("Имя или фамилия не указаны!!!");
+            throw new IllegalStateException("Имя или фамилия не указаны!!!");
         if (age < 0) {
             person = new Person(name, surname);
         } else person = new Person(name, surname, age);
